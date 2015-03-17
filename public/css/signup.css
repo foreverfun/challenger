@@ -1,0 +1,17 @@
+.signup-page {
+  margin-top: 50px;
+  width: 728px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signup-header {
+  background: url(images/banner.jpg) repeat-x 0 0;
+}
+
+h1 {
+  text-align:center;
+}
+
+.signup-form {
+  background-color: #ffffff;
+}

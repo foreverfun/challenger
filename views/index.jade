@@ -1,0 +1,322 @@
+extends layout
+block css
+  link(rel="stylesheet", href="../css/main.css")
+    
+block content
+  div.index-page
+
+    div.index-header
+      img(src="/images/banner.jpg")
+    
+    div.index-content
+
+      nav.navbar.navbar-default.navbar-inverse.index-nav
+        div.container-fluid
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href="/") Players
+              li
+                a(href="/messages") Messages
+              li
+                a(href="/profile") Profile
+              li 
+                a(href="/auth/logout") Log Out
+
+      //- Player List
+      div.contentsection
+        //- Filter
+        table.table
+          tr
+            td(align="right")
+              p.filterplayers.button.btn.btn-success(type="button" data-toggle="modal") Filter
+      
+        div.playersection
+          div.players   
+            table.table.table-bordered
+              tr
+                for player in players
+                  td(align="center")
+                    div.player(data-playerid="#{player._id}")
+                      img(src="/images4demo/#{player.image}" height="100px")
+                      br 
+                      strong #{player.username}
+                      br 
+                      strong #{player.name}   
+                      br 
+                      //- button.btn.btn-primary.viewPlayer(type="button") View Profile
+                      a.viewplayer(href="#") View Profile 
+                      br 
+                      //- button.btn.btn-primary.compilemsg(type="button") Send Message
+                      a.compilemsg(href="#") Send Message 
+        //- Broadcast Message
+        div.broadcastsection.hidden
+          div.playersid
+            for player in players
+              div.playerid 
+                input.playeridvalue.form-control(value="#{player._id}")
+
+        table.table
+          tr
+            td(align="center")
+              p.broadcast.button.btn.btn-success(type="button" data-toggle="modal") Broadcast    
+        
+        
+
+  //- View A Player
+  #viewplayer-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+            span &times;
+          h4.modal-title View a Player
+        .modal-body
+          img.playerpic(width="150px")
+          hr
+          p
+            lable Username:
+            | &nbsp; 
+            label.player-username
+          p
+            lable Name: 
+            | &nbsp;
+            label.player-name  
+          p
+            label Age:
+            | &nbsp;
+            label.player-age
+          p
+            label Gender:
+            | &nbsp;
+            label.player-gender 
+          p
+            label NTRP:
+            | &nbsp;
+            label.player-ntrp
+          p
+            label Location:
+            | &nbsp;
+            label.player-location
+        .modal-footer
+          button.btn.btn-default.removepic(data-dismiss="modal") Close
+
+  //- Compile A Message
+  #compilemsg-modal.modal.fade
+    .modal-dailog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+            span &times;
+          h4.modal-title Compile A Message
+        .modal-body
+          .form-group.hidden
+            label Invite:
+              input.msg-inviteid.form-control(type="text")
+          .form-group.hidden
+            label Be Invited:
+              input.msg-beinvitedid.form-control(type="text")
+          .form-group
+            label Court Name:
+              input.msg-courtname.form-control(type="text")
+          .form-group
+            label Court Address:
+              input.msg-courtaddress.form-control(type="text")
+          .form-group
+            label Date:
+              input.msg-playdate.form-control(type="date")
+          .form-group
+            label Time:
+              input.msg-playtime.form-control(type="time")
+          .form-group
+            label Message: 
+              textarea.msg-content.form-control(rows='4', cols='30') 
+        .modal-footer
+          button.btn.btn-primary.sendmsg(type="button") Send Message
+          button.btn.btn-default(data-dismiss="modal") Close
+
+  //- Filter Players
+  #filterplayers-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+            span &times;
+          h4.modal-title View a Player
+        .modal-body
+          p
+            label Gender:  
+              select.filter-gender
+                option(value="male") Male
+                option(value="female") Female
+                option(value="any" selected="selected") Any
+          table 
+            tr
+              td
+                label NTRP: &nbsp;  
+              td
+                input(type="checkbox" name="ntrp[]" value="1.5") 
+                | &nbsp;
+                label 1.5 | Absolute Beginner
+              td
+                input(type="checkbox" name="ntrp[]" value="2.0") 
+                | &nbsp;
+                label 2.0 | Beginner
+              td
+                input(type="checkbox" name="ntrp[]" value="2.0") 
+                | &nbsp;
+                label 2.5 | Beginner
+            tr
+              td
+              td  
+                input(type="checkbox" name="ntrp[]" value="3.0") 
+                | &nbsp;
+                label 3.0 | Intermediate
+ 
+              td
+                input(type="checkbox" name="ntrp[]" value="3.5") 
+                | &nbsp;
+                label 3.5 | Intermediate
+              td  
+                input(type="checkbox" name="ntrp[]" value="4.0") 
+                | &nbsp;
+                label 4.0 | Intermediate
+            tr
+              td
+              td
+                input(type="checkbox" name="ntrp[]" value="4.5") 
+                | &nbsp;
+                label 4.5 | Advance
+              td
+                input(type="checkbox" name="ntrp[]" value="5.0") 
+                | &nbsp;
+                label 5.0 | Advance
+              td
+                input(type="checkbox" name="ntrp[]" value="5.5") 
+                | &nbsp;
+                label 5.5 | Advance
+            tr
+              td
+              td
+                input(type="checkbox" name="ntrp[]" value="6.0") 
+                | &nbsp;
+                label 6.0 or Above | Pro
+              td
+          p
+            label City:
+            | 
+            input.filter-city(type="string")
+          p
+            label State:
+            | 
+            select.filter-state
+              option(value="AL") AL
+              | 
+              option(value="AK") AK
+              | 
+              option(value="AZ") AZ
+              | 
+              option(value="AR") AR
+              | 
+              option(value="CA") CA
+              | 
+              option(value="CO") CO
+              | 
+              option(value="CT") CT
+              | 
+              option(value="DE") DE
+              | 
+              option(value="DC") DC
+              | 
+              option(value="FL") FL
+              | 
+              option(value="GA") GA
+              | 
+              option(value="HI") HI
+              | 
+              option(value="ID") ID
+              | 
+              option(value="IL") IL
+              | 
+              option(value="IN") IN
+              | 
+              option(value="IA") IA
+              | 
+              option(value="KS") KS
+              | 
+              option(value="KY") KY
+              | 
+              option(value="LA") LA
+              | 
+              option(value="ME") ME
+              | 
+              option(value="MD") MD
+              | 
+              option(value="MA") MA
+              | 
+              option(value="MI") MI
+              | 
+              option(value="MN") MN
+              | 
+              option(value="MS") MS
+              | 
+              option(value="MO") MO
+              | 
+              option(value="MT") MT
+              | 
+              option(value="NE") NE
+              | 
+              option(value="NV") NV
+              | 
+              option(value="NH") NH
+              | 
+              option(value="NJ") NJ
+              | 
+              option(value="NM") NM
+              | 
+              option(value="NY") NY
+              | 
+              option(value="NC") NC
+              | 
+              option(value="ND") ND
+              | 
+              option(value="OH") OH
+              | 
+              option(value="OK") OK
+              | 
+              option(value="OR") OR
+              | 
+              option(value="PA") PA
+              | 
+              option(value="RI") RI
+              | 
+              option(value="SC") SC
+              | 
+              option(value="SD") SD
+              | 
+              option(value="TN") TN
+              | 
+              option(value="TX") TX
+              | 
+              option(value="UT") UT
+              | 
+              option(value="VT") VT
+              | 
+              option(value="VA") VA
+              | 
+              option(value="WA") WA
+              | 
+              option(value="WV") WV
+              | 
+              option(value="WI") WI
+              | 
+              option(value="WY") WY
+        .modal-footer
+          button.btn.btn-primary.runfilterplayers(type="button") Run
+          button.btn.btn-default(data-dismiss="modal") Close
+
+block scripts
+  //- script.
+  //-   var user = !{JSON.stringify(user)}
+  script(src="/scripts/main.js")  
+
+  

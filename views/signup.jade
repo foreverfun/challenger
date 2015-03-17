@@ -1,0 +1,205 @@
+extends layout
+block css
+  link(rel="stylesheet", href="../css/signup.css")
+
+block content
+  //- Form for allowing new users to register.
+  div.signup-page
+
+    div.signup-header
+      img(src="images/banner.jpg")
+
+    div.signup-form
+      h1 Register
+      form(action="/auth/signup", method="post")
+        table.table.table-striped
+          tr
+            td
+              label Username: 
+            td
+              input.col-sm-10.form-control.signup-username(type="text", name="username")
+          tr
+            td
+              label Picture:
+            td
+              //- input(type="file" name="picture")
+              image(src="/images/tennisball.jpeg")
+          tr
+            td
+              label Password:
+            td
+              input.col-sm-10.form-control.signup-password(type="password", name="password")
+          tr
+            td
+              label Name (Frist Last):
+            td
+              input.col-sm-10.form-control.signup-name(type="text" name="name")
+          tr  
+            td    
+              label Email:
+            td    
+              input.col-sm-10.form-control.signup-email(type="email", name="email")
+          tr    
+            td
+              label Age:
+            td
+              input.col-sm-10.form-control.signup-age(type="number", name="age" min="18" max="100")
+          tr
+            td
+              label Gender:
+            td
+              .radio
+                label
+                  input.col-sm-2(type='radio', name='gender', value='male')
+                  | &nbsp; Male
+                  | &nbsp;  
+                label
+                  input.col-sm-2(type='radio', name='gender', value='female')
+                  | &nbsp; Female
+          tr
+            td 
+              label NTRP: 
+            td
+              select.form-control.signup-ntrp
+                option(value='1.5') 1.5 | Absolute Beginner
+                |   
+                option(value='2.0') 2.0 | Beginner
+                |   
+                option(value='2.5') 2.5 | Intermediate
+                |   
+                option(value='3.0') 3.0 | Intermediate
+                |   
+                option(value='3.5') 3.5 | Intermediate
+                |   
+                option(value='4.0') 4.0 | Intermediate
+                |   
+                option(value='4.5') 4.5 | Advance
+                |   
+                option(value='5.0') 5.0 | Advance
+                |   
+                option(value='5.5') 5.5 | Advance
+                |   
+                option(value='6.0') 6.0 or Above | Pro
+          tr
+            td
+              label City:
+            td
+              input.form-control.signup-city(type="text")
+          tr
+            td
+              label State:
+            td
+              select.form-control.signup-state
+                option(value="AL") AL
+                | 
+                option(value="AK") AK
+                | 
+                option(value="AZ") AZ
+                | 
+                option(value="AR") AR
+                | 
+                option(value="CA") CA
+                | 
+                option(value="CO") CO
+                | 
+                option(value="CT") CT
+                | 
+                option(value="DE") DE
+                | 
+                option(value="DC") DC
+                | 
+                option(value="FL") FL
+                | 
+                option(value="GA") GA
+                | 
+                option(value="HI") HI
+                | 
+                option(value="ID") ID
+                | 
+                option(value="IL") IL
+                | 
+                option(value="IN") IN
+                | 
+                option(value="IA") IA
+                | 
+                option(value="KS") KS
+                | 
+                option(value="KY") KY
+                | 
+                option(value="LA") LA
+                | 
+                option(value="ME") ME
+                | 
+                option(value="MD") MD
+                | 
+                option(value="MA") MA
+                | 
+                option(value="MI") MI
+                | 
+                option(value="MN") MN
+                | 
+                option(value="MS") MS
+                | 
+                option(value="MO") MO
+                | 
+                option(value="MT") MT
+                | 
+                option(value="NE") NE
+                | 
+                option(value="NV") NV
+                | 
+                option(value="NH") NH
+                | 
+                option(value="NJ") NJ
+                | 
+                option(value="NM") NM
+                | 
+                option(value="NY") NY
+                | 
+                option(value="NC") NC
+                | 
+                option(value="ND") ND
+                | 
+                option(value="OH") OH
+                | 
+                option(value="OK") OK
+                | 
+                option(value="OR") OR
+                | 
+                option(value="PA") PA
+                | 
+                option(value="RI") RI
+                | 
+                option(value="SC") SC
+                | 
+                option(value="SD") SD
+                | 
+                option(value="TN") TN
+                | 
+                option(value="TX") TX
+                | 
+                option(value="UT") UT
+                | 
+                option(value="VT") VT
+                | 
+                option(value="VA") VA
+                | 
+                option(value="WA") WA
+                | 
+                option(value="WV") WV
+                | 
+                option(value="WI") WI
+                | 
+                option(value="WY") WY
+          tr
+            td
+            td
+              input.btn.btn-primary.signup(type="submit" value="save")
+
+block scripts
+  script(src="/scripts/signup.js")
+  
+
+ 
+  
+  

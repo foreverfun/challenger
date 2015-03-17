@@ -1,0 +1,150 @@
+extends layout
+block css
+  link(rel="stylesheet", href="../css/main.css")
+
+block content
+  div.index-page
+
+    div.index-header
+      img(src="/images/banner.jpg")
+
+    div.index-content
+      
+      nav.navbar.navbar-default.navbar-inverse.index-nav
+        div.container-fluid
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href="/") Players
+              li
+                a(href="/messages") Messages
+              li
+                a(href="/profile") Profile
+              li 
+                a(href="/auth/logout") Log Out
+
+      //- Message
+      div.msgsection
+        div.messages
+          table.table-striped.table
+            tr
+              th.col-sm-4
+                | Msg Date
+              th.col-sm-4
+                | Challenger
+              th.col-sm-4
+                | Challenged
+              th.col-sm-4
+                | Status
+              th.col-sm-4
+                | Details
+            for msg in msgs
+              tr.msg(data-msgid="#{msg._id}")
+                td.col-sm-4
+                  | #{msg.msgdate}
+                td.col-sm-4
+                  | #{msg.invite.name}
+                td.col-sm-4 
+                  | #{msg.beinvited.name}
+                td.col-sm-4
+                  | #{msg.status}
+                td.col-sm-4
+                  | 
+                  button.btn.btn-success.viewmsg(type="button") View
+
+  #detailedmsg-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+              span &times;
+          h4.modal-title Detailed Message
+        .modal-body
+          div
+            label.msgid.hidden
+          div
+            lable.msgdate.hidden
+          div
+            table.table
+              tr
+                td(width="50%")
+                  label.msgchallenger
+                td(width="50%") 
+                  label.msgchallenged
+          form
+            .form-group
+              label Play Date:
+              | 
+              input.msgplaydate.form-control(type="date")
+            .form-group
+              label Play Time:
+              | 
+              input.msgplaytime.form-control(type="time")
+            .form-group
+              label Court Name:
+              | 
+              input.msgcourtname.form-control(type="text")
+            .form-group.msgcourtdiv
+              label Court Address:
+              | 
+              input.msgcourtaddress.form-control(type="text")
+            .form-group
+              label Previous Conversation:
+              | 
+              div.msgprecontent
+                div.msgaddcontent
+            .form-group
+              label.msgcontentl Message
+              | 
+              textarea.msgcontent.form-control(rows='4', cols='50')
+        .modal-footer
+          table
+            tr
+              td.col-sm-4
+                button.btn.btn-success.updatemsg(type="button") Send Message
+              td.col-sm-4
+                button.btn.btn-success.closemsg(type="button") Close Message
+
+  #closedmsg-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal")
+              span &times;
+          h4.modal-title Closed Message
+        .modal-body
+          div
+            label.msgid.hidden
+          div
+            lable.msgdate.hidden
+          div
+            table.table
+              tr
+                td(width="50%")
+                  label.msgchallenger
+                td(width="50%") 
+                  label.msgchallenged
+          form
+            .form-group
+              label Play Date:
+              | 
+              input.msgplaydate.form-control(type="date" disabled="disabled" )
+            .form-group
+              label Play Time:
+              | 
+              input.msgplaytime.form-control(type="time" disabled="disabled" )
+            .form-group
+              label Court Name:
+              | 
+              input.msgcourtname.form-control(type="text" disabled="disabled" )
+            .form-group.msgcourtdiv
+              label Court Address:
+              | 
+              input.msgcourtaddress.form-control(type="text" disabled="disabled" )
+            .form-group
+              label Previous Conversation:
+              | 
+              div.msgprecontent
+                div.msgaddcontent
+  
+block scripts
+    script(src="/scripts/msg.js")
