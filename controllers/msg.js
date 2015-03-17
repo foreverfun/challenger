@@ -1,11 +1,24 @@
 var User = require('../models/user');
 var Message = require('../models/message');
-var config = require('../config/email');
+//var config = require('../config/email');
 
-//var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
-var sendgrid = require('sendgrid')(
-  process.env.EMAIL_ACCOUNT || config.emailAccount, 
-  process.env.EMAIL_PASSWORD || config.emailPassword);
+var config;
+
+if(process.env.EMAIL_ACCOUNT) {
+  config = {
+    emailAccount: process.env.EMAIL_ACCOUNT,
+    emailPassword: process.env.EMAIL_PASSWORD
+  };
+} else {
+  config = require('../config/email');  
+}
+
+
+var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
+
+// var sendgrid = require('sendgrid')(
+//   process.env.EMAIL_ACCOUNT || config.emailAccount, 
+//   process.env.EMAIL_PASSWORD || config.emailPassword);
 
 var sendEmail = function(msg) {
   var website = "http://www.challenger.com";
