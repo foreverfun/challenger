@@ -1,3 +1,5 @@
-node_modules
-config/email.js
-images4demo/
+/node_modules
+npm-debug.log
+.DS_Store
+/config/email.js
+/images4demo
