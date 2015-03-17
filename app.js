@@ -42,7 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // connect to player database
-mongoose.connect('mongodb://localhost/tennis');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/tennis');
 // Seed the database
 require('./models/seeds/userSeed.js');
 
