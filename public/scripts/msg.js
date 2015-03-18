@@ -142,8 +142,12 @@ var closeMessage = function(e) {
 
   //console.log(messageData);
   $.post('/msgc', messageData, function(result){
-    window.location.pathname="/messages";
+    //window.location.pathname="/messages";
+    //console.log(result);
+    window.location.reload(true);
+
   });
+   //window.location.reload(true);
 }
 
 $(document).on('ready', function(){

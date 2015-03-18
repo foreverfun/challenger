@@ -109,13 +109,11 @@ var msgController = {
   displayMsg: function(req, res) {
     var msgid = req.params.id;
     Message.findById(msgid, function(err, result){
-      //console.log(result);
       res.send(result);
     });
   },
 
 saveMsg: function(req, res) {
-    //console.log("data from client:",req.body);
 
     //User.findOne({_id:req.body.playerid}, function(err, result){
     User.findById(req.body.playerid, function(err, result){
@@ -133,8 +131,6 @@ saveMsg: function(req, res) {
         content: messageLog,
         status: req.body.status
       };
-    
-      //console.log(msg);
 
       // send email to notify 
       sendEmail(msg);    
@@ -156,7 +152,8 @@ saveMsg: function(req, res) {
     Message.findById(req.body.msgid, function(err, result){       
       result.content.push(messageLog);
       req.body.content = result.content;
-      Message.update({_id:req.body.msgid}, req.body, function(err) {});
+      Message.update({_id:req.body.msgid}, req.body, function(err) {
+      });
 
     });
     
@@ -167,7 +164,8 @@ saveMsg: function(req, res) {
     Message.findById(req.body.msgid, function(err, result){
       result.content.push(messageLog);
       req.body.content = result.content;
-      Message.update({_id:req.body.msgid}, req.body, function(err) {});
+      Message.update({_id:req.body.msgid}, req.body, function(err) {
+        res.send("success");});
     });
   }
 };
