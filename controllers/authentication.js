@@ -4,8 +4,11 @@ var User = require('../models/user');
 
 var performLogin = function(req, res, next, user){
   req.login(user, function(err){
-    if(err) return next(err);
-
+    if(err) {
+      console.log("err:",err);
+      console.log("user:", user);
+      return next(err);
+    }
     return res.redirect('/');
   });
 };
@@ -18,7 +21,7 @@ var authenticationController = {
   },
 
   processLogin: function(req, res, next){
-    console.log(req.body);
+    console.log("processLogin:", req.body);
     var authFunction = passport.authenticate('local', function(err, user, info){
 
       if(err) return next(err);
