@@ -64,12 +64,16 @@ app.get('/profile', profileController.account);
 app.get('/messages', msgController.displayMsgs);
 app.get('/message/:id', msgController.displayMsg);
 
-app.post('/filterplayers', filterController.filterPlayers);
-app.post('/msgn', msgController.newMsg);
-app.post('/msgu', msgController.updateMsg);
 
+app.post('/filterplayers', filterController.filterPlayers);
+// app.post('/msgn', msgController.newMsg);
+// app.post('/msgu', msgController.updateMsg);
+
+app.post('/msg', msgController.saveMsg);
+app.post('/msgu', msgController.updateMsg);
+app.post('/msgc', msgController.closeMsg);
 // Start our server!
-var port = process.env.PORT || 1688;
+var port = process.env.PORT || 7152;
 var server = app.listen(port, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });

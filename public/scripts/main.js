@@ -1,3 +1,13 @@
+var clearPlayerData = function() {
+//$('.playerpic').text(dataFromServer.image);
+  $('.player-username').text("");
+  $('.player-name').text("");
+  $('.player-age').text("");
+  $('.player-gender').text("");
+  $('.player-ntrp').text("");
+  $('.player-location').text("");
+}
+
 var displayPlayerData = function(data) {
   $('.playerpic').attr('src', "/images4demo/"+data.image);
   //$('.playerpic').text(dataFromServer.image);
@@ -12,10 +22,11 @@ var displayPlayerData = function(data) {
 // =======================================================
 var viewPlayer = function(e) {
   e.preventDefault();
+  clearPlayerData();
 
   var originalPlayerElement = $(this).closest('.player');
   var targetId = originalPlayerElement.attr('data-playerid');
-  console.log(targetId);
+  //console.log(targetId);
 
   // with player id, get data from database
   // display on the view a player dialog box
@@ -158,7 +169,9 @@ var messageData = {};
       status: "Open"
     };
 
-    $.post('/msgn', messageData);
+    $.post('/msg', messageData, function(result){
+      window.location.pathname="/messages";
+    });
   }
 }
 

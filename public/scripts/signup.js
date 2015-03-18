@@ -15,7 +15,9 @@ $(document).on('ready', function() {
         location: $('.signup-city').val() + " " + $('.signup-state').val(),
     };
     
-    $.post('/auth/signup', signupData);
+    $.post('/auth/signup', signupData, function(result) {
+        window.location.pathname="/";
+    });
 
   });
 });

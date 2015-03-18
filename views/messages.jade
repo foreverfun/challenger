@@ -13,9 +13,9 @@ block content
       nav.navbar.navbar-default.navbar-inverse.index-nav
         div.container-fluid
             ul.nav.navbar-nav.navbar-right
-              li.active
-                a(href="/") Players
               li
+                a(href="/") Players
+              li.active
                 a(href="/messages") Messages
               li
                 a(href="/profile") Profile
@@ -103,48 +103,6 @@ block content
                 button.btn.btn-success.updatemsg(type="button") Send Message
               td.col-sm-4
                 button.btn.btn-success.closemsg(type="button") Close Message
-
-  #closedmsg-modal.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close(type="button", data-dismiss="modal")
-              span &times;
-          h4.modal-title Closed Message
-        .modal-body
-          div
-            label.msgid.hidden
-          div
-            lable.msgdate.hidden
-          div
-            table.table
-              tr
-                td(width="50%")
-                  label.msgchallenger
-                td(width="50%") 
-                  label.msgchallenged
-          form
-            .form-group
-              label Play Date:
-              | 
-              input.msgplaydate.form-control(type="date" disabled="disabled" )
-            .form-group
-              label Play Time:
-              | 
-              input.msgplaytime.form-control(type="time" disabled="disabled" )
-            .form-group
-              label Court Name:
-              | 
-              input.msgcourtname.form-control(type="text" disabled="disabled" )
-            .form-group.msgcourtdiv
-              label Court Address:
-              | 
-              input.msgcourtaddress.form-control(type="text" disabled="disabled" )
-            .form-group
-              label Previous Conversation:
-              | 
-              div.msgprecontent
-                div.msgaddcontent
   
 block scripts
     script(src="/scripts/msg.js")

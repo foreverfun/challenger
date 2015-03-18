@@ -14,11 +14,11 @@ if(process.env.EMAIL_ACCOUNT) {
 }
 
 
-var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
+// var sendgrid = require('sendgrid')(config.emailAccount, config.emailPassword);
 
-// var sendgrid = require('sendgrid')(
-//   process.env.EMAIL_ACCOUNT || config.emailAccount, 
-//   process.env.EMAIL_PASSWORD || config.emailPassword);
+var sendgrid = require('sendgrid')(
+  process.env.EMAIL_ACCOUNT || config.emailAccount, 
+  process.env.EMAIL_PASSWORD || config.emailPassword);
 
 var sendEmail = function(msg) {
   var website = "http://www.challenger.com";
@@ -36,17 +36,17 @@ var sendEmail = function(msg) {
 
   //console.log(emailbody);
 
-  // sendgrid.send({
-  //   to: msg.beinvited.email,
-  //   from: msg.invite.email,
-  //   subject: emailsubject,
-  //   text: emailbody}, function(err, result) {
-  //     if (err) {
-  //       return "email failed!";
-  //     } else {
-  //       return "email send!";
-  //     }
-  // });
+  sendgrid.send({
+    to: msg.beinvited.email,
+    from: msg.invite.email,
+    subject: emailsubject,
+    text: emailbody}, function(err, result) {
+      if (err) {
+        return "email failed!";
+      } else {
+        return "email send!";
+      }
+  });
 }
 
 var updateMsgDB = function(req) {
@@ -109,18 +109,19 @@ var msgController = {
   displayMsg: function(req, res) {
     var msgid = req.params.id;
     Message.findById(msgid, function(err, result){
+      //console.log(result);
       res.send(result);
     });
   },
 
-  // Save A New Message
-  newMsg: function(req, res) {
-    var messageLog = req.body.todaydate + " - " + req.user.name + " : " + req.body.content;
+saveMsg: function(req, res) {
+    //console.log("data from client:",req.body);
 
-    // get the challenged data from database
-    User.findOne({_id:req.body.playerid}, function(err, result){
+    //User.findOne({_id:req.body.playerid}, function(err, result){
+    User.findById(req.body.playerid, function(err, result){
+      
+      var messageLog = req.body.todaydate + " - " + req.user.name + " : " + req.body.content;
 
-      //compile msg data
       var msg = {
         invite: req.user,
         beinvited: result,
@@ -131,25 +132,44 @@ var msgController = {
         msgdate: req.body.todaydate,
         content: messageLog,
         status: req.body.status
-      }; 
+      };
+    
+      //console.log(msg);
+
+      // send email to notify 
+      sendEmail(msg);    
 
       // save to message collection
       var msgDB = new Message(msg);
       msgDB.save();
 
-      // send email to notify both parties
-      sendEmail(msg);   
-
       //res.redirect("/messages");
       res.send("success");
+
     });
   },
 
-  // Update A Message
   updateMsg: function(req, res) {
-    updateMsgDB(req);
+
+    var messageLog = req.body.todaydate + " - " + req.user.name + " : " + req.body.content;    
+    
+    Message.findById(req.body.msgid, function(err, result){       
+      result.content.push(messageLog);
+      req.body.content = result.content;
+      Message.update({_id:req.body.msgid}, req.body, function(err) {});
+
+    });
+    
+  },
+
+  closeMsg: function(req, res) {
+    var messageLog = req.body.todaydate + " - " + req.user.name + " : " + req.body.content + "{ END }";  
+    Message.findById(req.body.msgid, function(err, result){
+      result.content.push(messageLog);
+      req.body.content = result.content;
+      Message.update({_id:req.body.msgid}, req.body, function(err) {});
+    });
   }
-  
 };
 
 module.exports = msgController;

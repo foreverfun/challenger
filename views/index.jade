@@ -102,7 +102,7 @@ block content
 
   //- Compile A Message
   #compilemsg-modal.modal.fade
-    .modal-dailog
+    .modal-dialog
       .modal-content
         .modal-header
           button.close(type="button", data-dismiss="modal")
@@ -111,25 +111,25 @@ block content
         .modal-body
           .form-group.hidden
             label Invite:
-              input.msg-inviteid.form-control(type="text")
+            input.msg-inviteid.form-control(type="text")
           .form-group.hidden
             label Be Invited:
-              input.msg-beinvitedid.form-control(type="text")
+            input.msg-beinvitedid.form-control(type="text")
           .form-group
             label Court Name:
-              input.msg-courtname.form-control(type="text")
+            input.msg-courtname.form-control(type="text")
           .form-group
             label Court Address:
-              input.msg-courtaddress.form-control(type="text")
+            input.msg-courtaddress.form-control(type="text")
           .form-group
             label Date:
-              input.msg-playdate.form-control(type="date")
+            input.msg-playdate.form-control(type="date")
           .form-group
             label Time:
-              input.msg-playtime.form-control(type="time")
+            input.msg-playtime.form-control(type="time")
           .form-group
             label Message: 
-              textarea.msg-content.form-control(rows='4', cols='30') 
+            textarea.msg-content.form-control(rows='4', cols='30') 
         .modal-footer
           button.btn.btn-primary.sendmsg(type="button") Send Message
           button.btn.btn-default(data-dismiss="modal") Close

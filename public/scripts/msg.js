@@ -1,109 +1,156 @@
-var clearFields = function() {
-  $('.msgcontent').val(""); 
+var clearFormFields = function() {
+  $('.msgid').text("");
+  $('.msgdate').text("");
+  $('.msgchallenger').text("");
+  $('.msgchallenged').text("");
+  $('.msgplaydate').val("");
+  $('.msgplaytime').val(""); 
+  $('.msgcourtname').val("");
+  $('.msgcourtaddress').val("");
+  $('.msgcontent').val("");
 }
 
-// ==============================================
-
-var renderMsgData = function(data) {
-  var imagePath = "/images4demo/";
-  var premsg = "";
-
-  // msg id: hidden field
-  $('.msgid').text(data._id); 
-  // msg date
-  $('.msgdate').text(data.msgdate);
-  // challenger
-  $('.msgchallenger').text(data.invite.name);
-  $('.msgchallenger').append('<p><img src="' + imagePath + data.invite.image +  '" height="100"/></p>');
-  // challenged
-  $('.msgchallenged').text(data.beinvited.name);
-  $('.msgchallenged').append('<p><img src="'+ imagePath + data.beinvited.image + '" height="100"/></p>');
-  // date & time
-  $('.msgplaydate').val(data.playdate);
-  $('.msgplaytime').val(data.playtime);
-  // name & address
-  $('.msgcourtname').val(data.courtname);
-  $('.msgcourtaddress').val(data.courtlocation);
-  // previous conversation
-  for (var i=0; i<data.content.length; i++) {
-      premsg = premsg + data.content[i] +"<br/><br/>";
-  }
-  $('.msgaddcontent').remove();
-  $('.msgprecontent').append("<div class='msgaddcontent'>" + premsg + "</div>");
-}
-
-// ==============================================
-var compileMsgData = function(status) {
- 
-  var todayDate = new Date();
-  var todaydate = todayDate.toDateString();
-
-  var messageData = {
-    msgid: $('.msgid').text(),
-    msgdate: $('.msgdate').text(),
-    courtname: $('.msgcourtname').val(),
-    courtaddress: $('.msgcourtaddress').val(),
-    playdate: $('.msgplaydate').val(),
-    playtime: $('.msgplaytime').val(),
-    todaydate: todaydate,
-    content: $('.msgcontent').val(),
-    status: status
-  };
-
-  return messageData;
-}
-
-// ==============================================
 var viewMessage = function(e) {
-  
   e.preventDefault();
 
-  clearFields();
+  clearFormFields();
 
   var originalMsgElement = $(this).closest('.msg');
   var targetId = originalMsgElement.attr('data-msgid');
 
   $.get('/message/'+targetId, function(dataFromServer){
-    renderMsgData(dataFromServer);
-    if (dataFromServer.status ==="Closed") {
-      $('#closedmsg-modal').modal('show');
+    $('.msgid').text(dataFromServer._id);
+    $('.msgdate').text(dataFromServer.msgdate);
+    $('.msgchallenger').text(dataFromServer.invite.name);
+    $('.msgchallenger').append(
+      '<p><img src="/images4demo/' + 
+      dataFromServer.invite.image +  
+      '" height="100"/></p>');
+    $('.msgchallenged').text(dataFromServer.beinvited.name);
+    $('.msgchallenged').append(
+      '<p><img src="/images4demo/' + 
+      dataFromServer.beinvited.image +  
+      '" height="100"/></p>');
+    $('.msgplaydate').val(dataFromServer.playdate);
+    $('.msgplaytime').val(dataFromServer.playtime);
+    $('.msgcourtname').val(dataFromServer.courtname);
+    $('.msgcourtaddress').val(dataFromServer.courtlocation)
+
+    //console.log(dataFromServer.content);
+    var premsg = "";
+    for (var i=0; i<dataFromServer.content.length; i++) {
+        premsg = premsg + dataFromServer.content[i] +"<br/>";
     }
-    else {
-      $('#detailedmsg-modal').modal('show');  
+    $('.msgaddcontent').remove();
+    $('.msgprecontent').append("<div class='msgaddcontent'>" + premsg + "</div>");
+
+    if (dataFromServer.status === "Closed") {
+      // $('.msgcontentdiv').hide();
+      $('.msgcontentl').hide();
+      $('.msgcontent').hide();
+      $('.updatemsg').hide();
+      $('.closemsg').hide();
+    } else {
+      $('.msgcontentl').show();
+      $('.msgcontent').show();
+      $('.updatemsg').show();
+      $('.closemsg').show();
     }
+
+
   });
+
+  $('#detailedmsg-modal').modal('show');
 }
 
-// ==============================================
 var updateMessage = function(e) {
   e.preventDefault();
 
   $('#detailedmsg-modal').modal('hide');
+  
+  var msgId = $('.msgid').text();
+  var msgDate = $('.msgdate').text();
+ 
+  var playDate = $('.msgplaydate').val();
+  var playTime = $('.msgplaytime').val();
 
-  $.post('/msgu', compileMsgData("Open"));
+  //console.log(msgId);
+  var courtName = $('.msgcourtname').val();
+  var courtAddress = $('.msgcourtaddress').val();
+ 
+  var todayDate = new Date();
+  var todaydate = todayDate.toDateString();
+  var content = $('.msgcontent').val(); 
 
-  clearFields();
+  var messageData = {
+    msgid: msgId,
+    msgdate: msgDate,
+    courtname: courtName,
+    courtaddress: courtAddress,
+    playdate: playDate,
+    playtime: playTime,
+    todaydate: todaydate,
+    content: content,
+    status: "Open"
+  };
 
+  //console.log(messageData);
+  $.post('/msgu', messageData, function(result){
+    window.location.pathname="/messages";
+  });
 }
 
 var closeMessage = function(e) {
   e.preventDefault();
 
-  $('#closedmsg-modal').modal('hide');
+  $('#detailedmsg-modal').modal('hide');
+  
+  var msgId = $('.msgid').text();
+  var msgDate = $('.msgdate').text();
+ 
+  var playDate = $('.msgplaydate').val();
+  var playTime = $('.msgplaytime').val();
 
-  $.post('/msgu', compileMsgData("Closed"));
+  //console.log(msgId);
+  var courtName = $('.msgcourtname').val();
+  var courtAddress = $('.msgcourtaddress').val();
+ 
+  var todayDate = new Date();
+  var todaydate = todayDate.toDateString();
+  var content = $('.msgcontent').val(); 
 
-  clearFields();
+  var messageData = {
+    msgid: msgId,
+    msgdate: msgDate,
+    courtname: courtName,
+    courtaddress: courtAddress,
+    playdate: playDate,
+    playtime: playTime,
+    todaydate: todaydate,
+    content: content,
+    status: "Closed"
+  };
+  // var msgId = $('.msgid').text();
+  // var msgDate = $('.msgdate').text();
+  // var status = "Closed";
+
+  // var messageData = {
+  //   msgid: msgId,
+  //   msgdate: msgDate,
+  //   status: status
+  // };
+
+  //console.log(messageData);
+  $.post('/msgc', messageData, function(result){
+    window.location.pathname="/messages";
+  });
 }
 
 $(document).on('ready', function(){
   // open view detailed message modal
   $(document).on('click', '.viewmsg', viewMessage);
   
-  // click update message button in modal
   $('.updatemsg').on('click', updateMessage);
-
-  // click close message button in modal
   $('.closemsg').on('click', closeMessage);
 
 });
