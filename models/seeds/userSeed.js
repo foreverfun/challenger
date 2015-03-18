@@ -33,7 +33,7 @@ User.find({}, function(err, documents){
       username: "Green",
       password:  "1234",
       name: "Fiona Smith",
-      email: "foreverfun7@gmail.com",
+      email: "fiona@abc.com",
       image: "fiona.jpeg",
       age: 42,
       gender: "female",

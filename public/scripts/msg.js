@@ -96,7 +96,7 @@ var updateMessage = function(e) {
 
   //console.log(messageData);
   $.post('/msgu', messageData, function(result){
-    window.location.pathname="/messages";
+    //window.location.pathname="/messages";
   });
 }
 

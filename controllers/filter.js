@@ -3,7 +3,7 @@ var User = require('../models/user');
 var filterController = {
 
   filterPlayers: function(req, res){
-    console.log(req.body);
+    //console.log(req.body);
     var index;
     // var requirementStr = requirementStr = "ntrp: {$in:" + req.body.ntrp +"},location:" + req.body.location + "}";
       
