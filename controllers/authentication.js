@@ -18,7 +18,7 @@ var authenticationController = {
   },
 
   processLogin: function(req, res, next){
-
+    console.log(req.body);
     var authFunction = passport.authenticate('local', function(err, user, info){
 
       if(err) return next(err);
