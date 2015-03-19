@@ -31,7 +31,7 @@ User.find({}, function(err, documents){
 
     var userFiona = new User({
       username: "fiona",
-      password:  "1",
+      password:  "1234",
       name: "Fiona Smith",
       email: "fiona@abc.com",
       image: "fiona.jpeg",
@@ -83,7 +83,7 @@ User.find({}, function(err, documents){
 
     var userShrek = new User({
       username: "Shrek",
-      password:  "1",
+      password:  "1234",
       name: "Shrek Davis",
       email: "foreverfun7@gmail.com",
       image: "shrek.jpeg",
@@ -109,7 +109,7 @@ User.find({}, function(err, documents){
 
     var userBatman = new User({
       username: "Batman",
-      password:  "1",
+      password:  "1234",
       name: "Batman Miller",
       email: "forever.fun.cj@gyahoo.com",
       image: "batman.jpeg",
