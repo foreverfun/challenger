@@ -30,8 +30,8 @@ User.find({}, function(err, documents){
     userBelle.save();
 
     var userFiona = new User({
-      username: "Green",
-      password:  "1234",
+      username: "F",
+      password:  "1",
       name: "Fiona Smith",
       email: "fiona@abc.com",
       image: "fiona.jpeg",
@@ -82,8 +82,8 @@ User.find({}, function(err, documents){
     userDemo1.save();
 
     var userShrek = new User({
-      username: "Shrek",
-      password:  "1234",
+      username: "S",
+      password:  "1",
       name: "Shrek Davis",
       email: "foreverfun7@gmail.com",
       image: "shrek.jpeg",
@@ -108,8 +108,8 @@ User.find({}, function(err, documents){
     userHomer.save();
 
     var userBatman = new User({
-      username: "Batman",
-      password:  "1234",
+      username: "B",
+      password:  "1",
       name: "Batman Miller",
       email: "forever.fun.cj@gyahoo.com",
       image: "batman.jpeg",
