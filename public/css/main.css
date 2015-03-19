@@ -1,16 +1,17 @@
 .index-page {
   margin-top: 50px;
-  width: 728px;
+  width: 90%;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.index-header {
-  /*background: url(../images/banner.jpg) repeat-x 0 0;*/
+.index-header img {
+  width:100%;
 }
 
 .index-content {
-  background-color: #ffffff;
+  background: rgb(255,255,255)
 }
 
 .index-nav {
@@ -23,9 +24,13 @@ h3 {
 
 .profile-page {
   background:#ffffff;
-  padding:20px 20px 5px 20px;
-  top: 100px;
-  right: 200px;
+  padding:0;
+
+}
+
+.form-group img {
+  margin: 10px;
+  width: 90%;
 }
 
 .loginform {
@@ -35,4 +40,37 @@ h3 {
   top: 100px;
   right: 200px;
   text-align:center;
+}
+
+
+.column {
+  float: left;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.column.fifth {
+  width: 20%;
+}
+
+.column.half {
+  width: 50%;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+ 
+.clearfix:after {
+  clear: both;
+}
+ 
+.clearfix {
+  *zoom: 1;
+}
+
+.playersection {
+  text-align: center;
 }

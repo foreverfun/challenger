@@ -68,6 +68,18 @@ User.find({}, function(err, documents){
     });
     userUrsula.save();
 
+    var userDemo1 = new User({
+      username: "Demo1",
+      password:  "1234",
+      name: "Demo1 Demo",
+      email: "demo1@demo.com",
+      image: "tennisball.jpeg",
+      age: 35,
+      gender: "female",
+      ntrp: 3.5,
+      location: "Los Angeles CA"
+    });
+    userDemo1.save();
 
     var userShrek = new User({
       username: "Shrek",
@@ -99,7 +111,7 @@ User.find({}, function(err, documents){
       username: "Batman",
       password:  "1234",
       name: "Batman Miller",
-      email: "batmanmiller@gyahoo.com",
+      email: "forever.fun.cj@gyahoo.com",
       image: "batman.jpeg",
       age: 28,
       gender: "male",
@@ -133,5 +145,125 @@ User.find({}, function(err, documents){
       location: "Boulder CO"
     });
     userSpiderman.save();
+
+
+    var userDemo2 = new User({
+      username: "Demo2",
+      password:  "1234",
+      name: "Demo2 Demo",
+      email: "demo2@demo.com",
+      image: "tennisball.jpeg",
+      age: 23,
+      gender: "female",
+      ntrp: 4.5,
+      location: "Los Angeles CA"
+    });
+    userDemo2.save();
+    
+    /*
+    var userDemo3 = new User({
+      username: "Demo3",
+      password:  "1234",
+      name: "Demo3 Demo",
+      email: "demo3@demo.com",
+      image: "tennisball.jpeg",
+      age: 48,
+      gender: "male",
+      ntrp: 2.5,
+      location: "Los Angeles CA"
+    });
+    userDemo3.save();
+  
+    var userDemo4 = new User({
+      username: "Demo4",
+      password:  "1234",
+      name: "Demo4 Demo",
+      email: "demo4@demo.com",
+      image: "tennisball.jpeg",
+      age: 65,
+      gender: "male",
+      ntrp: 3.5,
+      location: "Los Angeles CA"
+    });
+    userDemo4.save();
+
+    var userDemo5 = new User({
+      username: "Demo5",
+      password:  "1234",
+      name: "Demo5 Demo",
+      email: "demo5@demo.com",
+      image: "tennisball.jpeg",
+      age: 37,
+      gender: "male",
+      ntrp: 4.0,
+      location: "Los Angeles CA"
+    });
+    userDemo5.save();
+  
+    var userDemo6 = new User({
+      username: "Demo6",
+      password:  "1234",
+      name: "Demo6 Demo",
+      email: "demo6@demo.com",
+      image: "tennisball.jpeg",
+      age: 60,
+      gender: "female",
+      ntrp: 4.5,
+      location: "Boulder CO"
+    });
+    userDemo6.save();
+
+    var userDemo7 = new User({
+      username: "Demo7",
+      password:  "1234",
+      name: "Demo7 Demo",
+      email: "demo7@demo.com",
+      image: "tennisball.jpeg",
+      age: 55,
+      gender: "male",
+      ntrp: 4.0,
+      location: "Boulder CO"
+    });
+    userDemo7.save();
+
+    var userDemo8 = new User({
+      username: "Demo8",
+      password:  "1234",
+      name: "Demo8 Demo",
+      email: "demo8@demo.com",
+      image: "tennisball.jpeg",
+      age: 42,
+      gender: "female",
+      ntrp: 3.5,
+      location: "Boulder CO"
+    });
+    userDemo8.save();
+  
+    var userDemo9 = new User({
+      username: "Demo9",
+      password:  "1234",
+      name: "Demo9 Demo",
+      email: "demo9@demo.com",
+      image: "tennisball.jpeg",
+      age: 38,
+      gender: "male",
+      ntrp: 3.0,
+      location: "Boulder CO"
+    });
+    userDemo9.save();
+
+    var userDemo10 = new User({
+      username: "Demo10",
+      password:  "1234",
+      name: "Demo10 Demo",
+      email: "demo10@demo.com",
+      image: "tennisball.jpeg",
+      age: 22,
+      gender: "male",
+      ntrp: 2.5,
+      location: "Boulder CO"
+    });
+    userDemo10.save(); 
+    */
   }
 });

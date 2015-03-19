@@ -92,22 +92,25 @@ var filterPlayers = function(e) {
 
     // parse data and display on the screen
     var bplayers = "<div class='playersid'>";
-    var players = "<div class='players'><table class='table table-bordered'></tr>";
+    //var players = "<div class='players'><table class='table table-bordered'></tr>";
+    var players = "<div class='players'>";
     for (var i=0; i<dataFromServer.players.length; i++) {
       bplayers = bplayers + 
         "<div class='playerid'><input value='" + 
         dataFromServer.players[i]._id + 
         "' class='playeridvalue form-control'></div>";
+      
       players = players + 
-        "<td align='center'><div class='player' data-playerid='" +  dataFromServer.players[i]._id + "'>" +
+        "<div class='column fifth'><div class='player' data-playerid='" +  dataFromServer.players[i]._id + "'>" +
         "<img src='/images4demo/" +dataFromServer.players[i].image+ "' height='100px'/><br/>" + 
         "<strong>" + dataFromServer.players[i].username + "</strong><br/>" + 
         "<strong>" + dataFromServer.players[i].name + "</strong><br/>" + 
         "<a class='viewplayer' href='#'>View Profile</a><br/>" +
         "<a class='compilemsg' href='#'>Send Message</a><br/>" + 
-        "</div></td>";
+        //"</div></td>";
+        "</div></div>";
     }
-    players = players + "</tr></table></div>"
+    players = players + "</div></div>"
     //console.log(players);
     //console.log(bplayers);
 

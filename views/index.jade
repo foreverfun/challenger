@@ -32,22 +32,37 @@ block content
       
         div.playersection
           div.players   
-            table.table
-              tr
-                for player in players
-                  td(align="center")
-                    div.player(data-playerid="#{player._id}")
-                      img(src="/images4demo/#{player.image}" height="100px")
-                      br 
-                      strong #{player.username}
-                      br 
-                      strong #{player.name}   
-                      br 
-                      //- button.btn.btn-primary.viewPlayer(type="button") View Profile
-                      a.viewplayer(href="#") View Profile 
-                      br 
-                      //- button.btn.btn-primary.compilemsg(type="button") Send Message
-                      a.compilemsg(href="#") Send Message 
+            //- table.table  
+            //-   tr
+            //-     for player in players
+            //-       td(align="center")
+            //-         div.player(data-playerid="#{player._id}")
+            //-           img(src="/images4demo/#{player.image}" height="100px")
+            //-           br 
+            //-           strong #{player.username}
+            //-           br 
+            //-           strong #{player.name}   
+            //-           br 
+            //-           //- button.btn.btn-primary.viewPlayer(type="button") View Profile
+            //-           a.viewplayer(href="#") View Profile 
+            //-           br 
+            //-           //- button.btn.btn-primary.compilemsg(type="button") Send Message
+            //-           a.compilemsg(href="#") Send Message 
+            for player in players
+              div.column.fifth
+                div.player(data-playerid="#{player._id}")
+                  img(src="/images4demo/#{player.image}" height="100px")
+                  br 
+                  strong #{player.username}
+                  br 
+                  strong #{player.name}   
+                  br 
+                  //- button.btn.btn-primary.viewPlayer(type="button") View Profile
+                  a.viewplayer(href="#") View Profile 
+                  br 
+                  //- button.btn.btn-primary.compilemsg(type="button") Send Message
+                  a.compilemsg(href="#") Send Message
+
         //- Broadcast Message
         div.broadcastsection.hidden
           div.playersid
