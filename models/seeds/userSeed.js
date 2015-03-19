@@ -30,7 +30,7 @@ User.find({}, function(err, documents){
     userBelle.save();
 
     var userFiona = new User({
-      username: "fiona",
+      username: "Fiona",
       password:  "1234",
       name: "Fiona Smith",
       email: "fiona@abc.com",
