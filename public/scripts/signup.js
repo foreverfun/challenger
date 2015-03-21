@@ -39,11 +39,11 @@ $(document).on('ready', function() {
   $('.signup').on('click', function(e){
     e.preventDefault();
  
-    var returnResult = "Error: " + formValidation();
+    var returnResult = formValidation();
     //console.log(returnResult);
 
     if (returnResult != 1) {
-      $('.errmsg').val(returnResult);
+      $('.errmsg').val("Error:" + returnResult);
     } else {
       var signupData = {
         username: $('.signup-username').val(),
