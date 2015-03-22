@@ -1,7 +1,6 @@
 var User = require('../user');
 
 User.find({}, function(err, documents){
-  //console.log(documents.length);
   if (documents.length === 0) {
     var userElsa = new User({
       username: "Frozen",

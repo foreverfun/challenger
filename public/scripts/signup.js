@@ -43,7 +43,7 @@ $(document).on('ready', function() {
     //console.log(returnResult);
 
     if (returnResult != 1) {
-      $('.errmsg').val("Error:" + returnResult);
+      $('.errmsg').val("Error: " + returnResult);
     } else {
       var signupData = {
         username: $('.signup-username').val(),

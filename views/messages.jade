@@ -97,12 +97,9 @@ block content
               | 
               textarea.msgcontent.form-control(rows='4', cols='50')
         .modal-footer
-          table
-            tr
-              td.col-sm-4
-                button.btn.btn-success.updatemsg(type="button") Send
-              td.col-sm-4
-                button.btn.btn-success.closemsg(type="button") End
+          button.btn.btn-success.updatemsg(type="button") Send
+          | &nbsp; &nbsp;
+          button.btn.btn-success.closemsg(type="button") End
   
 block scripts
     script(src="/scripts/msg.js")

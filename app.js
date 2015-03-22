@@ -71,7 +71,7 @@ app.post('/filterplayers', filterController.filterPlayers);
 
 app.post('/msg', msgController.saveMsg);
 app.post('/msgu', msgController.updateMsg);
-app.post('/msgc', msgController.closeMsg);
+//app.post('/msgc', msgController.closeMsg);
 // Start our server!
 var port = process.env.PORT || 7152;
 var server = app.listen(port, function() {

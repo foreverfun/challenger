@@ -5,8 +5,6 @@ var User = require('../models/user');
 var performLogin = function(req, res, next, user){
   req.login(user, function(err){
     if(err) {
-      //console.log("err:",err);
-      //console.log("user:", user);
       return next(err);
     }
     return res.redirect('/');
@@ -21,7 +19,6 @@ var authenticationController = {
   },
 
   processLogin: function(req, res, next){
-    //console.log("processLogin:", req.body);
     var authFunction = passport.authenticate('local', function(err, user, info){
 
       if(err) return next(err);
@@ -41,8 +38,6 @@ var authenticationController = {
 
     // Seed the database
     require('../models/seeds/userSeed.js');
-
-    //console.log("data from client:", req.body);
     
     var user = new User({
       username: req.body.username,

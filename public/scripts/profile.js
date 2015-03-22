@@ -1,7 +1,6 @@
 $(document).on('ready', function() {
   
   $('.profile-save').on('click', function(e){
-    
     e.preventDefault();
     
     var id = $('.profile-userid').val();
@@ -12,9 +11,5 @@ $(document).on('ready', function() {
     var gender = $('.profile-gender').val();
     var ntrp = $('.profile-ntrp').val();
     var location = $('.profile-location').val();
-
-    //var temp = id + " " + username;
-    //console.log(temp);
-    
   });
 });
